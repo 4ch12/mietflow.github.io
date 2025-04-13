@@ -1,23 +1,35 @@
-
+<!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>MietFlow – KI für Ihre Mieterkommunikation</title>
+  
+  <!-- Favicon und Icons -->
   <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/11468/11468603.png" type="image/png">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/11468/11468603.png">
+
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="MietFlow – KI für Ihre Mieterkommunikation" />
+  <meta property="og:description" content="Automatische Analyse von Mieteranfragen für Hausverwaltungen und Vermieter." />
+  <meta property="og:image" content="https://cdn-icons-png.flaticon.com/512/11468/11468603.png" />
+  <meta property="og:url" content="https://deinprojekt.github.io/mietflow" />
+  <meta name="twitter:card" content="summary_large_image" />
+
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: #f0f4f8;
       color: #222;
-      padding: 0;
       margin: 0;
+      padding: 0;
     }
     header {
       background: #0a2342;
       color: white;
-      padding: 40px 20px;
       text-align: center;
+      padding: 40px 20px;
     }
     header img {
       height: 50px;
@@ -46,24 +58,31 @@
       margin-bottom: 30px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.05);
     }
-    h2 {
+    .section h2 {
       margin-top: 0;
       color: #0a2342;
     }
-    ul {
+    .section ul {
       list-style: none;
       padding-left: 0;
     }
-    ul li {
+    .section ul li {
       margin: 10px 0;
       padding-left: 20px;
       position: relative;
     }
-    ul li::before {
+    .section ul li::before {
       content: "✓";
       color: #0077cc;
       position: absolute;
       left: 0;
+    }
+    .image {
+      width: 100%;
+      max-height: 300px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 20px;
     }
     .form-group {
       margin-bottom: 15px;
@@ -84,18 +103,11 @@
       font-size: 1em;
       border-radius: 6px;
       cursor: pointer;
+      transition: background 0.3s ease;
     }
     button:hover {
       background: #005fa3;
     }
-    .image {
-      width: 100%;
-      max-height: 300px;
-      object-fit: cover;
-      border-radius: 8px;
-      margin-bottom: 20px;
-    }
-
     .thank-you {
       display: none;
       background-color: #d4edda;
@@ -104,7 +116,20 @@
       border-radius: 6px;
       margin-bottom: 20px;
     }
-
+    /* Анимация появления */
+    .fade-in {
+      animation: fadeIn 0.8s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    /* Hover-эффект для секций */
+    .section:hover {
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      transform: translateY(-2px);
+      transition: all 0.3s ease;
+    }
     @media (max-width: 600px) {
       header h1 {
         font-size: 1.6em;
@@ -127,8 +152,9 @@
   </header>
 
   <div class="container">
-    <div class="section">
-      <img src="https://images.unsplash.com/photo-1581093588401-3b16f6b1e0c4?auto=format&fit=crop&w=900&h=300&q=80" alt="KI Symbolbild" class="image" />
+    <!-- Секция с описанием возможностей MietFlow -->
+    <div class="section fade-in">
+      <img src="https://picsum.photos/id/1015/900/300" alt="KI Symbolbild" class="image" />
       <h2>Was MietFlow macht (kurz):</h2>
       <ul>
         <li>Automatische Analyse von Mieteranfragen</li>
@@ -138,23 +164,19 @@
       </ul>
     </div>
 
- <div class="section">
-  <img
-    src="https://drive.google.com/uc?export=view&id=1HjQvW3Aq9E98WtQq53jR1b1Nu4udVhHU"
-    alt="Vermietung Symbolbild"
-    class="image"
-    style="width: 100%; max-height: 300px; object-fit: cover; border-radius: 8px; margin-bottom: 20px;"
-  />
-  <h2>Vorteile für Vermieter und Hausverwaltungen:</h2>
-  <ul>
-    <li>Weniger manuelle Arbeit</li>
-    <li>Schnellere Reaktionszeiten</li>
-    <li>Mehr Fokus auf wichtige Fälle</li>
-  </ul>
-</div>
+    <!-- Секция с преимуществами для Vermieter und Hausverwaltungen -->
+    <div class="section fade-in">
+      <img src="https://i.imgur.com/7ypgcjo.jpg" alt="Vermietung Symbolbild" class="image" />
+      <h2>Vorteile für Vermieter und Hausverwaltungen:</h2>
+      <ul>
+        <li>Weniger manuelle Arbeit</li>
+        <li>Schnellere Reaktionszeiten</li>
+        <li>Mehr Fokus auf wichtige Fälle</li>
+      </ul>
+    </div>
 
-
-    <div class="section">
+    <!-- Секция с отзывами и формой обратной связи -->
+    <div class="section fade-in">
       <h2>Möchten Sie MietFlow testen oder mehr erfahren?</h2>
       <p>Schreiben Sie uns – wir melden uns gerne!</p>
 
@@ -184,9 +206,7 @@
       fetch(form.action, {
         method: "POST",
         body: data,
-        headers: {
-          'Accept': 'application/json'
-        }
+        headers: { 'Accept': 'application/json' }
       }).then(response => {
         if (response.ok) {
           form.reset();
