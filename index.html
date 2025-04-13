@@ -19,9 +19,16 @@
       padding: 40px 20px;
       text-align: center;
     }
+    header img {
+      height: 50px;
+      vertical-align: middle;
+      margin-right: 10px;
+    }
     header h1 {
+      display: inline-block;
+      vertical-align: middle;
       margin: 0;
-      font-size: 2.2em;
+      font-size: 2em;
     }
     header p {
       margin-top: 10px;
@@ -89,6 +96,15 @@
       margin-bottom: 20px;
     }
 
+    .thank-you {
+      display: none;
+      background-color: #d4edda;
+      color: #155724;
+      padding: 15px;
+      border-radius: 6px;
+      margin-bottom: 20px;
+    }
+
     @media (max-width: 600px) {
       header h1 {
         font-size: 1.6em;
@@ -105,13 +121,14 @@
 <body>
 
   <header>
-    <h1>KI für Ihre Mieterkommunikation</h1>
-    <p>MietFlow analysiert automatisch E-Mails und Dokumente von Mietern – sparen Sie Zeit und reagieren Sie schneller.</p>
+    <img src="https://cdn-icons-png.flaticon.com/512/11468/11468603.png" alt="MietFlow Logo" />
+    <h1>MietFlow</h1>
+    <p>KI für Ihre Mieterkommunikation – sparen Sie Zeit und reagieren Sie schneller.</p>
   </header>
 
   <div class="container">
     <div class="section">
-      <img src="https://via.placeholder.com/900x300.png?text=KI+Symbolbild" alt="KI Symbolbild" class="image" />
+      <img src="https://images.unsplash.com/photo-1581093588401-3b16f6b1e0c4?auto=format&fit=crop&w=900&h=300&q=80" alt="KI Symbolbild" class="image" />
       <h2>Was MietFlow macht (kurz):</h2>
       <ul>
         <li>Automatische Analyse von Mieteranfragen</li>
@@ -122,7 +139,7 @@
     </div>
 
     <div class="section">
-      <img src="https://via.placeholder.com/900x300.png?text=Hausverwaltung" alt="Vermietung Symbolbild" class="image" />
+      <img src="https://images.unsplash.com/photo-1560184897-ae75f418493e?auto=format&fit=crop&w=900&h=300&q=80" alt="Vermietung Symbolbild" class="image" />
       <h2>Vorteile für Vermieter und Hausverwaltungen:</h2>
       <ul>
         <li>Weniger manuelle Arbeit</li>
@@ -134,7 +151,10 @@
     <div class="section">
       <h2>Möchten Sie MietFlow testen oder mehr erfahren?</h2>
       <p>Schreiben Sie uns – wir melden uns gerne!</p>
-      <form action="https://formspree.io/f/xpwpbewg" method="POST">
+
+      <div class="thank-you" id="thankYouMsg">Vielen Dank! Ihre Nachricht wurde gesendet.</div>
+
+      <form id="contactForm" action="https://formspree.io/f/xpwpbewg" method="POST">
         <div class="form-group">
           <label for="email">Ihre E-Mail:</label>
           <input type="email" id="email" name="email" required>
@@ -147,6 +167,28 @@
       </form>
     </div>
   </div>
+
+  <script>
+    const form = document.getElementById("contactForm");
+    const thankYou = document.getElementById("thankYouMsg");
+
+    form.addEventListener("submit", function(event) {
+      event.preventDefault();
+      const data = new FormData(form);
+      fetch(form.action, {
+        method: "POST",
+        body: data,
+        headers: {
+          'Accept': 'application/json'
+        }
+      }).then(response => {
+        if (response.ok) {
+          form.reset();
+          thankYou.style.display = "block";
+        }
+      });
+    });
+  </script>
 
 </body>
 </html>
